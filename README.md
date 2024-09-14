@@ -5,19 +5,12 @@
 ### ЛР 2
 [Звіт](./reports/IA-12%20Yakovenko%20LAB2.pdf)
 
-![Діаграма варіантів використання](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Igor-Sikorsky-IST-Hub/individual-project-Darrriax/main/architecture/case-diagram.puml?token=GHSAT0AAAAAACKAYFMH2E5B37QQHZ2F476KZKLJNCQ)
-![Діаграма класів](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Igor-Sikorsky-IST-Hub/individual-project-Darrriax/main/architecture/class-diagram.puml?token=GHSAT0AAAAAACKAYFMG55VOV7C74LKMICRSZKLJNTA)
-
 Висновки:
 > У цій лабораторній роботі я побудувала діаграму варіантів використання (use-case diagram)
 > та діаграму класів (class diagram) для свого варіанту.
 ---
 ### ЛР 3
 [Звіт](./reports/ІА-12%20Yakovenko%20LAB3.pdf)
-
-![Діаграма розгортання](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Igor-Sikorsky-IST-Hub/individual-project-Darrriax/main/architecture/deployment-diagram.puml)
-![Діаграма компонентів](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Igor-Sikorsky-IST-Hub/individual-project-Darrriax/main/architecture/component-diagram.puml?token=GHSAT0AAAAAACKAYFMHDSDB2IP3GQCZEDRAZKLJONA)
-![Діаграма послідовностей](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Igor-Sikorsky-IST-Hub/individual-project-Darrriax/main/architecture/sequence-diagram.puml?token=GHSAT0AAAAAACKAYFMHDU6HP4RLHPEYNX7EZKLJOZA)
 
 Висновки:
 > У даній лабораторній роботі я побудувала діаграму розгортання (deployment diagram), діаграму компонентів 
