@@ -1,0 +1,25 @@
+@startuml
+
+[*] ---> ProgramEnabled: Увімкнення програми
+ ProgramEnabled ---> EnterText: Перехід до введення тексту
+
+
+  EnterText ---> HistoryButtonPressed: Введення тексту у поле едітора
+
+  HistoryButtonPressed --> HistoryOption: "Натискання кнопки "History" \nта вибір опції "Open History"
+
+state HistoryOption {
+  [*] ---> ValidationError: Синтаксичні помилки \nабо порожній текст
+  [*] ---> ValidationSuccess: Валідація \n успішна
+}
+
+state ValidationError {
+  [*] ---> EnterText: Виведення повідомлення \nпро помилку
+}
+
+state ValidationSuccess {
+  [*] --> SaveJson: Збергіання \nпоточних даних файлу \nта метатаних і їх \nдодавання в запис історії
+  SaveJson --> EnterText: Виведення повідомлення \nпро успіше збереження
+}
+
+@enduml

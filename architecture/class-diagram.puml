@@ -1,0 +1,147 @@
+@startuml
+
+class JSONToolApp {
+    +main()
+    +startApplication()
+}
+
+class JSONEditor {
+    +jsonTextinput
+}
+
+interface IValidatorComponent {
+    +validate()
+}
+
+class SyntaxValidator {
+    JsonString
+}
+
+class MetadataValidator {
+    JsonString
+}
+
+interface IExportStrategy {
+    +exportJSON()
+}
+
+interface IMetadataTable {
+    +updateTableData()
+}
+class MetadataTable {
+    JsonString
+}
+
+class TableExport {
+    JsonString
+}
+
+class TextExport {
+    JsonString
+}
+
+interface IMetadataPane {
+    +getNameField()
+    +getTypeComboBox()
+}
+
+class MetadataPane {
+}
+class MetadataPanePlus {
+}
+
+class SyntaxHighlighter {
+    rSyntaxTextArea
+    +highlightSyntax()
+}
+
+class MetadataEditor {
+    metadataPane
+    metadataTable
+    metadataMap[]
+    +updateMetadata()
+    +addMetadata()
+    +removeMetadata()
+    +editMetadata()
+}
+
+class JsonFileManager {
+    +create()
+    +open()
+    +save()
+}
+
+class AutoSaveManager {
+    +autoSave()
+}
+
+class HistoryManager {
+    historyPane
+    JsonFile
+    historyMap[]
+    +updateHistory()
+    +loadHistory()
+}
+
+class MessageDisplay {
+    displaySuccessMessage()
+    displayErrorMessage()
+}
+
+class State {
+    metadata
+    json
+    currentMetadataFile
+    currentJsonFile
+}
+class StateManager {
+    currentState
+    history
+    subscribers
+}
+
+interface ISubscriber {
+    update()
+}
+
+interface IStateManager {
+    update()
+    subscribe()
+    undo()
+    save()
+    getState()
+}
+
+
+
+JSONToolApp *- JSONEditor
+JSONToolApp *-- MetadataEditor
+JSONToolApp *-- HistoryManager
+
+JSONToolApp o-- IExportStrategy
+IExportStrategy *-- TextExport
+IExportStrategy *-- TableExport
+
+MetadataEditor *-- IMetadataPane
+MetadataEditor *-- IMetadataTable
+IMetadataPane *-- MetadataPane
+IMetadataPane *-- MetadataPanePlus
+IMetadataTable *-- MetadataTable
+
+SyntaxHighlighter --* JSONEditor
+IValidatorComponent --o JSONEditor
+
+IValidatorComponent *-- SyntaxValidator
+IValidatorComponent *-- MetadataValidator
+
+MessageDisplay <-- IValidatorComponent
+
+JSONEditor *-- AutoSaveManager
+JSONToolApp *- JsonFileManager
+JSONToolApp *- IStateManager
+IStateManager *- StateManager
+JSONToolApp *- State
+
+AutoSaveManager --* HistoryManager
+
+@enduml

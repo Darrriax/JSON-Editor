@@ -1,0 +1,66 @@
+@startuml
+
+node MainModule {
+    [JsonApp] as App
+    [AppMenu] as Menu
+    [AppBody] as Body
+    [Editor] as Editor
+    [Parser] as Parser
+    [ValidateButton] as ValidateBtn
+    [MetadataButton] as MetadataBtn
+    [HistoryButton] as HistoryBtn
+    [ExportButton] as ExportBtn
+    [SyntaxHighlighter] as Highlighter
+}
+
+node ValidationModule {
+    [JsonValidator] as Validator
+    [JsonValueChecker] as ValueChecker
+    [JsonSyntaxChecker] as SyntaxChecker
+    [MessageDisplay] as MessageDisplay
+}
+
+node HistoryModule {
+    [HistoryManager] as HistoryMgr
+    [AutoSaveManager] as AutoSaveMgr
+}
+
+node ExportModule {
+    [Exporter] as Exporter
+}
+
+node MetadataModule {
+    [MetadataEditor] as MetadataEditor
+    [TableComponent] as Table
+    [ObjectAdder] as Adder
+}
+
+App ..> Body : include
+App ..> Menu : include
+Menu ..> MetadataBtn : include
+Menu ..> HistoryBtn : include
+Menu ..> ExportBtn : include
+
+Body ..> ValidateBtn : include
+Body ..> Editor : include
+Editor ..> Parser : include
+Editor <.. Highlighter : extend
+
+ValidateBtn .> Validator : onclick Validate JSON
+Validator ..> ValueChecker : Check JSON Values
+Validator ..> SyntaxChecker : Check JSON Syntax
+ValueChecker ..> MessageDisplay : Display Messages
+SyntaxChecker ..> MessageDisplay : Display Messages
+
+HistoryBtn .> HistoryMgr : Manage History
+AutoSaveMgr ..> HistoryMgr : Save History
+Editor .> AutoSaveMgr : Manage AutoSave
+
+ExportBtn ..> Exporter : onclick Export JSON
+
+MetadataBtn ..> MetadataEditor : onclick Open Metadata Properties of Scheme
+MetadataEditor ..> Table : View/Edit Table
+MetadataEditor ..> Adder : Add Objects
+
+
+@enduml

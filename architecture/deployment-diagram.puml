@@ -1,0 +1,7 @@
+@startuml
+actor user
+node UserComputer {
+component JSONToolApp as App
+}
+user --> App : Uses
+@enduml

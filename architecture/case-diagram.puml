@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+actor Користувач as g
+package JSON_Tool {
+  usecase "Створити JSON схему" as UC1
+  usecase "Редагувати JSON схему" as UC2
+  usecase "Виділення синтаксису" as UC3
+usecase "Автоматичне збереження" as UC4
+usecase "Валідація схеми" as UC5
+usecase "Виведення помилок" as UC6
+usecase "Експорт схеми" as UC7
+usecase "Перегляд історії змін" as UC8
+usecase "Відкрити таблицю для метаданих властивостей схеми" as UC9
+
+}
+g ---> UC1
+g -> UC2
+UC1 .> UC9: include
+UC9 ..> UC2: extend
+UC2 ..> UC3: include
+UC2 ..> UC4: include
+UC7 ..> UC2: extend
+UC8 ..> UC2: extend
+UC5 ..> UC2: extend
+UC6 .> UC5: extend
+@enduml

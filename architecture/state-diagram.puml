@@ -1,0 +1,36 @@
+@startuml
+
+[*] ---> ProgramEnabled: Увімкнення програми
+ ProgramEnabled ---> EnterText: Перехід до введення тексту
+
+
+  EnterText ---> ExportButtonPressed: Введення тексту у поле едітора
+
+  ExportButtonPressed --> ValidateOption: "Натискання кнопки "Export" \nта вибір опції "Text"
+
+state ValidateOption {
+  [*] ---> ValidationError: Синтаксичні помилки \nабо порожній текст
+  [*] ---> ValidationSuccess: Успішна \nвалідація
+}
+
+
+
+state SavePathSelection {
+  [*] ---> EnterText: Скасування експортування
+  [*] ---> ExportSuccess: Вибір шляху зберігання \nекспортованого файлу
+}
+
+state ExportSuccess {
+  [*] ---> [*]: Виведення повідомлення про успіх
+}
+
+state ValidationError {
+  [*] ---> EnterText: Виведення повідомлення \nпро помилку
+}
+
+state ValidationSuccess {
+  [*] --> SavePathSelection: Вибір шляху зберігання шляху \nекспортованого файлу
+
+}
+
+@enduml

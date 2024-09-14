@@ -1,0 +1,72 @@
+@startuml
+
+actor User
+
+User -> JsonApp: Відкрити програму
+
+User -> JsonApp: Створити новий файл або відкрити існуючий
+
+activate JsonApp
+JsonApp --> Menu: Відображення головного меню
+
+User -> Menu: Вибір опції "Створити новий файл"
+activate Menu
+Menu --> MetadataEditor: Відкрити вікно редактору метаданих
+activate MetadataEditor
+MetadataEditor --> Table: Відображення таблиці
+
+User -> MetadataEditor: Редагування метаданих
+
+User -> MetadataEditor: Натиснути кнопку "Підтвердити"
+MetadataEditor -> MetadataEditor: Збереження метаданих
+
+MetadataEditor --> Menu: Закриття вікна метаданих
+
+Menu --> JsonApp: Повернення до головного меню
+deactivate MetadataEditor
+deactivate Menu
+
+User -> JsonApp: Вибрати опцію "Відкрити існуючий"
+JsonApp --> Editor: Відкриття редактору з текстом
+activate Editor
+Editor -> SyntaxHighlighter: Підсвічування синтаксису
+SyntaxHighlighter -> Editor: Відображення підсвіченого тексту
+
+User -> Editor: Редагування тексту
+Editor -> SyntaxHighlighter: Підсвічування синтаксису
+SyntaxHighlighter -> Editor: Відображення підсвіченого тексту
+Editor --> AutoSaveManager: Автоматичне збереження
+AutoSaveManager --> HistoryManager: Запис історії
+
+User -> JsonApp: Натиснути "Валідація"
+JsonApp -> Editor: Форматування тексту
+Editor -> Parser: Парс json
+Parser -> Validator: Перевірка синтаксису та значень
+Validator -> User: Відображення результату валідації
+
+User -> JsonApp: Вибрати опцію "Відкрити історію"
+JsonApp --> HistoryManager: Відкриття менеджера історії
+activate HistoryManager
+HistoryManager --> User: Відображення історії
+
+User -> JsonApp: Вибрати опцію "Відкрити метаданні"
+JsonApp --> MetadataEditor: Відкриття редактору метаданих
+activate MetadataEditor
+MetadataEditor --> Table: Відображення таблиці з метаданими
+
+User -> MetadataEditor: Редагування метаданих
+
+User -> MetadataEditor: Натиснути кнопку "Підтвердити"
+MetadataEditor -> MetadataEditor: Збереження метаданих
+
+MetadataEditor --> JsonApp: Закриття редактору метаданих
+deactivate MetadataEditor
+deactivate HistoryManager
+deactivate Editor
+
+User -> JsonApp: Вибрати опцію "Експортувати JSON"
+JsonApp --> Exporter: Відкриття експортера JSON
+activate Exporter
+Exporter --> User: Вибір місця для збереження JSON
+
+@enduml
